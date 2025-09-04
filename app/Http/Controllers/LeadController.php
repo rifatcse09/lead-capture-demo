@@ -38,7 +38,7 @@ class LeadController extends Controller
         $lead = Lead::create($data + ['created_at' => now()]);
 
         // Task C: Tracker log (audit trail)
-        Log::info('lead_captured', [
+        Log::channel('tracker')->info('lead_captured', [
             'id'   => $lead->id,
             'payload' => $data,
             'ip'   => $request->ip(),
